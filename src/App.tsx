@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AuthProvider } from './AuthContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import SignUp from './Components/signup';
+import Login from './Components/login';
+import NavBar from './Components/NavBar';
+import Home from './Components/Home';
+import MovieList from './Components/MoviesList';
+import MovieForm from './Components/createMovie';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const theme = createTheme();
+
+const App: React.FC = () => (
+  <AuthProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Container>
+          <NavBar />
+          <Routes>
+            <Route path="/register" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/movies" element={<MovieList />} />
+            <Route path="/movieform" element={<MovieForm />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    </ThemeProvider>
+  </AuthProvider>
+);
 
 export default App;
