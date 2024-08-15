@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://moviestore-7f90835bf12e.herokuapp.com/',
+  baseURL: 'http://127.0.0.1:8000/movies/',
 });
 
 export default instance;
