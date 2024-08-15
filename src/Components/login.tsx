@@ -48,6 +48,7 @@ const Login: React.FC = () => {
         const res = await axios.post('/token/', values);
         console.log('Login successful:', res.data);
         localStorage.setItem('accessToken', res.data.access);
+        console.log(res.data.access)
         toast.success('Login successful', { position: 'top-right' });
         navigate('/');
       } catch (error) {
